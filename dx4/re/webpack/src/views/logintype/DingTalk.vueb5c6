@@ -1,0 +1,20 @@
+import { render, staticRenderFns } from "./DingTalk.vue?vue&type=template&id=a9433ff8&scoped=true&"
+import script from "./DingTalk.vue?vue&type=script&lang=js&"
+export * from "./DingTalk.vue?vue&type=script&lang=js&"
+import style0 from "./DingTalk.vue?vue&type=style&index=0&id=a9433ff8&scoped=true&lang=css&"
+
+
+/* normalize component */
+import normalizer from "!../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js"
+var component = normalizer(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "a9433ff8",
+  null
+  
+)
+
+export default component.exports
