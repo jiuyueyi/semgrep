@@ -1,4 +1,0 @@
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"custom1-bg",style:({'background-color':_vm.theme})},[_c('left'),_c('div',{staticClass:"login-content"},[_c('core',{ref:"core"})],1)],1)}
-var staticRenderFns = []
-
-export { render, staticRenderFns }
