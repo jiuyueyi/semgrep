@@ -1,0 +1,43 @@
+<view class="pt15 border-box">
+    <block wx:if="{{serviceSitesData&&serviceSitesData.cooprationSsCount!==0}}">
+        <view catchtap="goToOtherPage" data-url="COOPER_SERVICE_SITE_DATAS">
+            <view class="pad-h-15 pb10">服务点代收数据</view>
+            <view class="flex-box cooper-box-title bold">
+                <view class="fx1">
+                    <image class="cooperation" src="../../images/cooperation.png"></image> 合作服务点数（{{serviceSitesData.cooprationSsCount}}）</view>
+            </view>
+            <view class="cooper-box flex-box">
+                <view class="fx1 ">
+                    <view style="padding: 15px 0 5px 0">
+                        <view class="fontSizeColor font14">昨日代扣额</view>
+                        <view class="fontSizeColor bold font18 pt10">{{wxs.handleToFixed(serviceSitesData.todayWithholdTotalFee,2)}}</view>
+                    </view>
+                    <view style="padding: 15px 0 5px 0">
+                        <view class="fontSizeColor font14">近31天代扣额</view>
+                        <view class="fontSizeColor bold font18 pt10">{{wxs.handleToFixed(serviceSitesData.monthWithholdTotalFee,2)}}</view>
+                    </view>
+                </view>
+                <view class="fx1">
+                    <view style="padding: 15px 0 5px 0">
+                        <view class="fontSizeColor font14">今日代收数</view>
+                        <view class="fontSizeColor bold font18 pt10">{{serviceSitesData.todayWithholdTotalCount}}</view>
+                    </view>
+                    <view class="" style="padding: 15px 0 5px 0">
+                        <view class="fontSizeColor font14">近31天代收数</view>
+                        <view class="fontSizeColor bold font18 pt10">{{serviceSitesData.monthWithholdTotalCount}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <CooperItem serviceSiteData="{{item}}" wx:for="{{serviceSitesData.ssListDtos}}" wx:key="index"></CooperItem>
+        <FloatDot catchclick="goToOtherPage" pageType="ADD_COOPER_SERVICE_SITE">添加</FloatDot>
+    </block>
+    <view class="uncooper-box" wx:else>
+        <image src="../../images/cooperIcon.png" style="width: 86px; height: 66px"></image>
+        <view class="mar-v-30 font16 title">您暂未添加合作服务点</view>
+        <view class="mt20 text-title tal">
+            <text class="bold title">说明：</text>添加合作服务点后，服务点用户入库您的快递，系统会根据服务点实际代收快递数实时扣取您的钱包余额，方便您与服务点线上结算代扣费用 </view>
+        <button catchtap="goToOtherPage" class="submit-btn font15 mt30" data-url="ADD_COOPER_SERVICE_SITE" style="width: 85%">添加服务点</button>
+    </view>
+</view>
+<wxs module="wxs" src="../../wxs/toFixed.wxs" />

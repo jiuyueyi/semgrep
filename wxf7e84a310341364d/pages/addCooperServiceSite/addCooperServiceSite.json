@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "添加合作服务点",
+    "usingComponents": {
+        "Popup": "../../components/popup/popup",
+        "AddExp": "../../components/addWithholdExp/addWithholdExp",
+        "PasswodInput": "../../components/passwodInput/passwodInput",
+        "CustomModal": "../../components/customModal/customModal"
+    }
+}

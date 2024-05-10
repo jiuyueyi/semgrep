@@ -1,0 +1,33 @@
+.uncooper-box {
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 20px 15px 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.cooper-box-title {
+    background: #fdf4ea;
+    color: #333;
+    margin: 0 15px;
+    padding: 10px 15px;
+}
+
+.cooper-box {
+    background-color: #fff;
+    background: #e50132;
+    border-radius: 16rpx;
+    margin: 0 15px;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.fontSizeColor {
+    color: #fff;
+}
+
+.cooperation {
+    height: 44rpx;
+    vertical-align: middle;
+    width: 44rpx;
+}

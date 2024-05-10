@@ -1,0 +1,8 @@
+{
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "合作服务点列表",
+    "usingComponents": {
+        "FloatDot": "../../components/floatDot/floatDot",
+        "CooperItem": "../../components/cooperServiceSiteItem/cooperServiceSiteItem"
+    }
+}

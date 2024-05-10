@@ -1,0 +1,23 @@
+page {
+    background-color: #fff;
+    position: relative;
+}
+
+.img-box {
+    height: 40px;
+    margin: 180rpx 0 80rpx;
+    width: 40px;
+}
+
+.login-btn {
+    margin: 120rpx auto 0;
+    width: 75%!important;
+}
+
+.login-msg {
+    color: #666;
+    margin: auto;
+    padding-top: 10px;
+    text-align: right;
+    width: 75%;
+}

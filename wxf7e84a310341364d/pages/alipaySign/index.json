@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "Popup": "../../components/popup/popup"
+    },
+    "navigationBarTitleText": "支付宝代扣开通/关闭"
+}

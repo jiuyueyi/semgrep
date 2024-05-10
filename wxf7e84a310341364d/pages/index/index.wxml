@@ -1,0 +1,90 @@
+<view catchtap="goToOtherPage" data-url="COOPER_SERVICE_SITE_DATAS" wx:if="{{serviceSitesSummeryData}}">
+    <view class="flex-box cooper-box-title bold">
+        <view class="fx1">
+            <image class="cooperation" src="../../images/cooperation.png"></image> 合作服务点数（{{serviceSitesSummeryData.cooprationSsCount}}） </view>
+    </view>
+    <view class="cooper-box flex-box">
+        <view class="fx1 ">
+            <view style="padding: 15px 0 5px 0">
+                <view class="fontSizeColor font14">昨日代扣额</view>
+                <view class="fontSizeColor bold font18 pt10">{{wxs.handleToFixed(serviceSitesSummeryData.todayWithholdTotalFee,2)}}</view>
+            </view>
+            <view style="padding: 15px 0 5px 0">
+                <view class="fontSizeColor font14">近31天代扣额</view>
+                <view class="fontSizeColor bold font18 pt10">{{wxs.handleToFixed(serviceSitesSummeryData.monthWithholdTotalFee,2)}}</view>
+            </view>
+        </view>
+        <view class="fx1">
+            <view style="padding: 15px 0 5px 0">
+                <view class="fontSizeColor font14">今日代收数</view>
+                <view class="fontSizeColor bold font18 pt10">{{serviceSitesSummeryData.todayWithholdTotalCount}}</view>
+            </view>
+            <view style="padding: 15px 0 5px 0">
+                <view class="fontSizeColor font14">近31天代收数</view>
+                <view class="fontSizeColor bold font18 pt10">{{serviceSitesSummeryData.monthWithholdTotalCount}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="bill-box" wx:if="{{billList.length>0}}">
+        <view class="font16 bold">账单</view>
+        <view catchtap="moreBill" class="font14 mt5" data-url="BILLS">
+            <span>更多</span>
+            <span class="iconfont icon-arrow-right text-placeholder" style="font-size:22rpx"></span>
+        </view>
+    </view>
+    <view class="bill-wrap">
+        <view catchtap="goDetails" class="flex-box bill-item" data-index="{{index}}" data-item="{{item}}" wx:for="{{billList}}" wx:key="index">
+            <view class="{{index===billList.length-1?'item-box borderBottomNode':'item-box'}}">
+                <view class="fx1">
+                    <view class="font15 text-ellipsis">{{item.billType===1?'入库代扣':''}}</view>
+                    <view class="mt5" wx:if="{{item.serviceSiteName}}">{{item.serviceSiteName}}</view>
+                    <view class="mt5">{{item.billDate}}</view>
+                </view>
+                <view class="tar">
+                    <text class="primary font16 bold">{{item.billAmount}}</text>
+                    <view class="mt5"> x{{item.billCount}} 票 </view>
+                    <view class="{{item.billStatus?'primary':'text-placeholder'}} mt5">
+                        <span wx:if="{{item.billStatus!==1}}">{{m1.orderStatusMap(item.billStatus)}}</span>
+                        <span wx:if="{{item.billStatus===1}}">{{item.billMessage}}</span>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="uncooper-box" wx:else>
+    <image src="../../images/cooperIcon.png" style="width: 120px; height: 90px"></image>
+    <view class="mar-v-30">输入服务点信息，添加合作服务点</view>
+    <button catchtap="goToOtherPage" class="line-btn font15" data-url="ADD_COOPER_SERVICE_SITE" style="width: 85%">添加服务点</button>
+</view>
+<Alert catchtrigger="handlePopClose" extraStyle="background:transparent" placement="center" visible="{{newUserModal}}">
+    <view class="modal-box">
+        <view class="modal-content">
+            <view class="modal-title">支付宝代扣开通</view>
+            <view class="zhi-text">邻里为了降低您的资金压力，使用支付宝代扣模式进行扣款。每天的代收费用将会在次日的上午9点由支付宝发起代扣，支持<span style="color:red">支付宝余额、花呗、信用卡、银行卡等方式。</span>
+                <view>注意：不开通，会导致无法代收哦。</view>
+            </view>
+        </view>
+        <button catchtap="closeModal" class="btn" hoverClass="none" type="primary">去开通</button>
+    </view>
+</Alert>
+<Alert catchtrigger="handlePopClose" extraStyle="background:transparent" placement="center" visible="{{oldUserModal}}">
+    <view class="modal-box">
+        <view class="modal-content">
+            <view class="modal-title">扣款方式升级</view>
+            <view class="zhi-text">邻里为了进一步降低您的资金压力，现将收费模式由先充值再扣款调整为<span style="color:#D22D3A;font-weight: bold;">支付宝代扣</span>模式。每天的代收费用将 会在<span style="color:#D22D3A;font-weight: bold;">次日的上午9点</span>由支付宝发起代扣，支持支付宝余额、花呗、信用卡、银行卡等方式。升级后<span style="color:#D22D3A;font-weight: bold;">未使用的钱包余额将会原路退回。</span>
+                <view>注意：不开通，会导致无法代收哦。</view>
+            </view>
+        </view>
+        <button catchtap="closeModal" class="btn" hoverClass="none" type="primary">去开通</button>
+    </view>
+</Alert>
+<wxs module="wxs" src="../../wxs/toFixed.wxs" />
+<wxs module="wxsDate" src="../../wxs/timestampToDateString.wxs" />
+<wxs module="m1">
+var orderStatusMap = (function(code) {
+    var orderMap = ['待支付', '已支付', '已完成'];
+    return (orderMap[((nt_0 = (code - 1), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))])
+});
+module.exports.orderStatusMap = orderStatusMap;
+</wxs>

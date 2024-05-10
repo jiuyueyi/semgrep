@@ -1,0 +1,59 @@
+<view class="pad-h-15 bg-white">
+    <view class="flex-box border-bottom-gray-1 pad-v-15">
+        <view>快递员姓名</view>
+        <view class="fx1 tar">{{personalData.userName}}</view>
+        <button catchtap="handleChangeNamePop" class="submit-btn edit-btn">编辑</button>
+    </view>
+    <view class="flex-box border-bottom-gray-1 pad-v-15">
+        <view>快递公司</view>
+        <view catchtap="handleExpressPop" class="fx1 tar pos-rel" style="height: 22px">
+            <image class="w-20 h-20 pos-abs" src="https://ocms.jtexpress.com.cn/ztapp/menuIcons/tmp/express-icon/icon_{{item.expressCode}}.png" style="right: {{personalData.expressCompanies.length<=10?(personalData.expressCompanies.length-1-index)*20:personalData.expressCompanies.length<=20?(personalData.expressCompanies.length-1-index)*10:(personalData.expressCompanies.length-1-index)*5}}px" wx:for="{{personalData.expressCompanies}}" wx:key="index"></image>
+        </view>
+        <view class="iconfont icon-arrow-right text-placeholder"></view>
+    </view>
+    <navigator class="flex-box pad-v-15 border-bottom-gray-1" hoverClass="none" url="/pages/phoneCaptcha/phoneCaptcha?phone={{personalData.phone}}&title=校验手机号&submitType=1">
+        <view>更换注册手机号</view>
+        <view class="fx1 tar">{{phone.handlePhoneCode(personalData.phone||'')}}</view>
+        <view class="iconfont icon-arrow-right text-placeholder"></view>
+    </navigator>
+    <navigator class="flex-box pad-v-15 border-bottom-gray-1" hoverClass="none" url="/pages/alipaySign/index">
+        <view>代扣开通/关闭</view>
+        <view class="fx1 tar pos-rel" style="height: 22px"></view>
+        <view class="iconfont icon-arrow-right text-placeholder"></view>
+    </navigator>
+    <button bindcontact="handleContact" class="kefu" openType="contact" style="width: 100vw;height: 9vh;">客服</button>
+</view>
+<Popup catchtrigger="handlePopClose" extraStyle="padding: 15px!important" placement="bottom" visible="{{selectExpPop}}">
+    <view class="pos-rel" wx:if="{{selectExpPop}}">
+        <view class="tac primary pb10 font16">请选择快递公司</view>
+        <block wx:if="{{expressCompanyList.length>0}}">
+            <scroll-view scrollY style="height: 200px">
+                <checkbox-group bindchange="handleCheckChange">
+                    <label class="checkbox" wx:for="{{expressCompanyList}}" wx:key="index">
+                        <view class="flex-box border-bottom-gray-1 pad10">
+                            <image class="w-20 h-20 mr15" src="https://ocms.jtexpress.com.cn/ztapp/menuIcons/tmp/express-icon/icon_{{item.expressCode}}.png"></image>
+                            <view class="fx1">{{item.expCompanyName}}</view>
+                            <checkbox checked="{{wxs.myFindIndex(expressCompanies,'expressCode',item.expressCode)>=0}}" class="pos-rel visibility-hide" value="{{item.expressCode}}">
+                                <view class="iconfont icon-select primary select-btn" hidden="{{wxs.myFindIndex(expressCompanies,'expressCode',item.expressCode)<0}}"></view>
+                                <view class="iconfont icon-unselect text-title select-btn" hidden="{{wxs.myFindIndex(expressCompanies,'expressCode',item.expressCode)>=0}}"></view>
+                            </checkbox>
+                        </view>
+                    </label>
+                </checkbox-group>
+            </scroll-view>
+            <button catchtap="handleChangeExps" class="submit-btn mt15 disale-btn" disabled="{{expressCompanies.length===0}}">确 定({{expressCompanies.length}})</button>
+        </block>
+    </view>
+</Popup>
+<Popup placement="center" visible="{{tradePswInputPop}}">
+    <view class="tac mb10">请输入交易密码</view>
+    <PasswodInput bindfinished="handleInputFinshed" id="inputFrame"></PasswodInput>
+    <view catchtap="handleForgetPsw" class="tar primary mt10">忘记密码</view>
+</Popup>
+<Popup catchtrigger="handlePopClose" extraStyle="border-radius: 4px" placement="center" visible="{{changeNamePop}}">
+    <CustomModal catchleftclick="handlePopClose" catchrightclick="handleChangeName" title="修改姓名" wx:if="{{changeNamePop}}">
+        <input bindinput="handleInputChange" class="change-name-input" maxlength="30" placeholder="请输入快递员姓名" placeholderClass="text-placeholder" value="{{changeNameValue}}"></input>
+    </CustomModal>
+</Popup>
+<wxs module="phone" src="../../wxs/phoneEncode.wxs" />
+<wxs module="wxs" src="../../wxs/findIndex.wxs" />

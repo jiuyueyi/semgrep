@@ -1,0 +1,36 @@
+<view class="flex-box pad-h-15 pad-v-10">
+    <view class="fx1">快递公司代扣费用设置</view>
+    <button catchtap="_handleAddLinePop" class="add-btn">添加快递公司</button>
+</view>
+<view class="bg-white text-title pad-h-15">
+    <view class="flex-box fee-box" wx:for="{{lineDatas}}" wx:key="index">
+        <view catchtap="_handleAddLinePop" data-express-code="{{item.expressCode}}"> {{item.expCompanyName}} <icon class="iconfont icon-arrow-right"></icon>
+        </view>
+        <view class="fx1 tar"> 代扣费用 <input bindinput="_handleInputChange" class="fee-input" data-index="{{index}}" placeholder="0.1-10" placeholderClass="text-placeholder" type="digit" value="{{item.fee}}"></input> 元/件 </view>
+        <view catchtap="_handleDeleteLine" class="iconfont icon-delete primary font18 pl10" data-express-code="{{item.expressCode}}"></view>
+    </view>
+</view>
+<Popup catchtrigger="_handlePopClose" extraStyle="padding: 15px!important" placement="bottom" visible="{{visible}}">
+    <view class="pos-rel" wx:if="{{visible}}">
+        <view class="tac primary pb10 font16">请选择快递公司</view>
+        <navigator bindsuccess="_handlePopClose" class="tar text-title" hoverClass="none" openType="switchTab" url="/pages/personal/personal">添加新的快递公司</navigator>
+        <block wx:if="{{expressCompanyList.length>0}}">
+            <scroll-view scrollY style="height: 200px">
+                <radio-group bindchange="_handleRadioChange">
+                    <label wx:for="{{expressCompanyList}}" wx:key="index">
+                        <view class="flex-box border-bottom-gray-1 pad10">
+                            <image class="w-20 h-20 mr15" src="https://ocms.jtexpress.com.cn/ztapp/menuIcons/tmp/express-icon/icon_{{item.expressCode}}.png"></image>
+                            <view class="fx1">{{item.expCompanyName}}</view>
+                            <radio checked="{{selectedExps.expressCode===item.expressCode}}" class="pos-rel visibility-hide" value="{{item.expressCode}}">
+                                <view class="iconfont icon-select primary select-btn" hidden="{{selectedExps.expressCode!==item.expressCode}}"></view>
+                                <view class="iconfont icon-unselect text-title select-btn" hidden="{{selectedExps.expressCode===item.expressCode}}"></view>
+                            </radio>
+                        </view>
+                    </label>
+                </radio-group>
+            </scroll-view>
+            <button catchtap="_handleUpdateLine" class="submit-btn mt15 disable-btn" disabled="{{selectedExps.length===0}}">确 定</button>
+        </block>
+        <view class="tac" wx:else>暂无快递公司</view>
+    </view>
+</Popup>

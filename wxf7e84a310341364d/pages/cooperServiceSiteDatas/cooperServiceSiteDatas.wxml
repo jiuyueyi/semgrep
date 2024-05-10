@@ -1,0 +1,67 @@
+<view class="flex-box header">
+    <view class="fx1 border-right-gray-1"> 总代收数 <view class="primary font16 bold mt10">{{totalExpress}}</view>
+    </view>
+    <view class="fx1">
+        <view class="mb10">总代扣</view>
+        <text class="primary font16 bold">{{totalFee}}</text>元 </view>
+</view>
+<view class="table" wx:if="{{serviceSiteTableDatas.length!==0}}">
+    <view class="flex-box table-header" style="background-color: #ddd">
+        <view class="fx1 table-header-cell">时间</view>
+        <view class="fx1 table-header-cell">服务点</view>
+        <view class="fx1 table-header-cell">均价(元)</view>
+        <view class="fx1 table-header-cell">包裹量</view>
+        <view class="fx1 table-header-cell">代扣费(元)</view>
+    </view>
+    <view class="flex-box table-header" wx:for="{{serviceSiteTableDatas}}" wx:key="index">
+        <view class="fx1 table-header-cell">{{item.date}}</view>
+        <view class="fx1 table-header-cell">{{item.serviceSiteName}}</view>
+        <view class="fx1 table-header-cell">{{wxs2.handleToFixed(item.meanFee,2)}}</view>
+        <view class="fx1 table-header-cell">{{item.expressCount}}</view>
+        <view class="fx1 table-header-cell">{{wxs2.handleToFixed(item.receiveFeeCount,2)}}</view>
+    </view>
+</view>
+<view class="pad-v-10 tac" wx:else>暂无数据.</view>
+<FloatDot catchclick="handleFilterShow">
+    <view class="iconfont icon-filter font18"></view>
+</FloatDot>
+<Popup catchtrigger="handleFilterClose" extraStyle="width: 80%; padding-bottom: 0" placement="right" visible="{{isFilterClick}}">
+    <block wx:if="{{isFilterClick}}">
+        <scroll-view scrollY class="border-box pb75" style="height: 100%">
+            <view class="bg-white gray pad-h-10 pt10 pb5">
+                <view class="pb10">时间筛选</view>
+                <button catchtap="handleTimeFilter" class="filter-time-btn" data-date-type="{{item.dateType}}" hoverClass="none" wx:for="{{DATE_BTNS}}" wx:key="index"> {{item.name}} <view class="iconfont icon-mark selected-icon" hidden="{{filterDateType!==item.dateType}}"></view>
+                </button>
+            </view>
+            <block wx:if="{{filterDateType==='custom'}}">
+                <view class="flex-box date-box">
+                    <view class="fx1">开始日期</view>
+                    <picker bindchange="handleDateChange" data-type="filterBeginDate" end="{{today}}" mode="date" value="{{filterBeginDate}}">
+                        <view>{{filterBeginDate}}</view>
+                    </picker>
+                </view>
+                <view class="flex-box date-box">
+                    <view class="fx1">结束日期</view>
+                    <picker bindchange="handleDateChange" data-type="filterEndDate" end="{{today}}" mode="date" value="{{filterEndDate}}">
+                        <view>{{filterEndDate}}</view>
+                    </picker>
+                </view>
+            </block>
+            <view class="bg-white gray pad-h-10 pt10 pb5">
+                <view class="pb10">服务点名称</view>
+                <view class="flex-box">
+                    <button catchtap="handleServiceSiteFilter" class="filter-time-btn" hoverClass="none"> 全部 <view class="iconfont icon-mark selected-icon" hidden="{{filterServiceSiteCodes.length!==0}}"></view>
+                    </button>
+                    <button catchtap="handleServiceSiteFilter" class="filter-time-btn" data-code="{{item.serviceSiteCode}}" hoverClass="none" wx:for="{{serviceSites}}" wx:key="index"> {{item.serviceSiteName}} <view class="iconfont icon-mark selected-icon" hidden="{{wxs.myIndexOf(filterServiceSiteCodes,item.serviceSiteCode)<0}}"></view>
+                    </button>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="submit-box flex-box pos-abs pad-h-15">
+            <button catchtap="handleReset" class="fx1 line-btn mr20">重置</button>
+            <button catchtap="handleMakeSure" class="fx1 submit-btn ">确定</button>
+        </view>
+    </block>
+</Popup>
+<wxs module="wxs" src="../../wxs/indexOf.wxs" />
+<wxs module="wxs2" src="../../wxs/toFixed.wxs" />

@@ -1,0 +1,6 @@
+var myIndexOf = (function(arr, index) {
+    return (arr.indexOf(index))
+});
+module.exports = ({
+    myIndexOf: myIndexOf,
+});

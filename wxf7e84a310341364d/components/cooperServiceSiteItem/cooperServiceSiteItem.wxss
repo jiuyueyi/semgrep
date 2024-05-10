@@ -1,0 +1,16 @@
+.cooper-item-box {
+    background-color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 15px 15px 0;
+}
+
+.express-box {
+    background-color: #fbfbfb;
+    padding: 10px 15px;
+}
+
+.withhold-box {
+    border-top: 1px solid #eeecec;
+    text-align: center;
+}

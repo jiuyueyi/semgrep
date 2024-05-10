@@ -1,0 +1,6 @@
+<view catchtouchmove="_handleTouchMove" class="popup popup-{{placement}} {{visible?'popup-show':''}}">
+    <view animation="{{animationMask}}" catchtap="_triggerMask" class="mask" style="{{maskStyles}}" wx:if="{{mask}}"></view>
+    <view class="popup-container" style="{{extraStyle}}">
+        <slot></slot>
+    </view>
+</view>

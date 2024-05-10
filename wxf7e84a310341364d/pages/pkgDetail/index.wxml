@@ -1,0 +1,19 @@
+<view class="pkg-detail">
+    <view class="pkg-table">
+        <view class="t-header t-flex">
+            <view class="f1 first">序号</view>
+            <view class="f1 second">快递单号</view>
+            <view class="f1 third">快递公司</view>
+            <view class="f1 last">入库时间</view>
+        </view>
+        <view class="t-body">
+            <view class="t-list t-flex" wx:for="{{instorageRecordList}}">
+                <view class="f1 first">{{index+1}}</view>
+                <view class="f1 second">
+                    <image class="icon" mode="aspectFill" src="https://ocms.jtexpress.com.cn/ztapp/menuIcons/tmp/express-icon/icon_{{item.expressCode}}.png"></image> {{item.waybillNo}}</view>
+                <view class="f1 third">{{item.expressName}}</view>
+                <view class="f1 last"> {{item.instorageTime}}</view>
+            </view>
+        </view>
+    </view>
+</view>

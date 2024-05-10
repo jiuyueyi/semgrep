@@ -1,0 +1,19 @@
+<view class="pad-h-15">
+    <view class="flex-box border-bottom-gray-1 pad-v-15" wx:if="{{oldPhone}}">
+        <view>{{submitType===1?'原':''}}手机号</view>
+        <view class="fx1 tar">{{phone.handlePhoneCode(oldPhone)}}</view>
+        <view catchtap="getCaptchaNum" class="primary font13 ml10">{{captchaTimer}}</view>
+    </view>
+    <view class="flex-box border-bottom-gray-1 pad-v-15" wx:else>
+        <view>手机号</view>
+        <input bindinput="handleInputChange" class="fx1 tar" data-type="mobile" maxlength="11" placeholder="请输入手机号" placeholderClass="text-placeholder" type="number" value="{{mobile}}"></input>
+        <view catchtap="getCaptchaNum" class="primary font13 ml10">{{captchaTimer}}</view>
+    </view>
+    <view class="flex-box border-bottom-gray-1 pad-v-15">
+        <view>验证码</view>
+        <input bindinput="handleInputChange" class="fx1 tar" data-type="smsCode" maxlength="6" placeholder="请输入验证码" placeholderClass="text-placeholder" type="number" value="{{smsCode}}"></input>
+    </view>
+</view>
+<button catchtap="handleSubmit" class="submit-btn change-btn disable-btn" disabled="{{!mobile&&!oldPhone||!smsCode}}">确 认</button>
+<t-captcha appId="2072284734" bindclose="handlerClose" binderror="handlerError" bindready="handlerReady" bindverify="handlerVerify" id="captcha"></t-captcha>
+<wxs module="phone" src="../../wxs/phoneEncode.wxs" />

@@ -1,0 +1,39 @@
+<Search catchsearch="handleSearch" id="search" placeholder="请输入单号搜索" position="fixed"></Search>
+<view class="pt50" wx:if="{{instorageTraceList.length>0}}">
+    <view catchtap="goDetails" class="flex-box bill-item" data-index="{{index}}" wx:for="{{instorageTraceList}}" wx:key="index">
+        <view class="fx1">
+            <view class="font15 bold">{{item.expressName}}</view>
+            <view class="mt5" wx:if="{{item.billCode}}">单号：{{item.billCode}}</view>
+            <view class="mt5">{{wxsDate.timestampToDateString(item.payTime,'time')}}</view>
+        </view>
+        <view class="tar">
+            <text class="primary font16 bold">{{item.totalAmount}}</text>元 <view class="{{item.tradeStatus?'primary':'text-placeholder'}} mt5"> 交易{{item.tradeStatus?'成功':'失败'}} </view>
+        </view>
+        <view class="iconfont icon-arrow-right font18 text-placeholder ml10"></view>
+    </view>
+</view>
+<view class="tac pt60" wx:else>暂无记录.</view>
+<FloatDot catchclick="handleFilterShow">
+    <view class="iconfont icon-filter font18"></view>
+</FloatDot>
+<Popup catchtrigger="handleFilterClose" extraStyle="width: 80%; padding-bottom: 0" placement="right" visible="{{isFilterClick}}">
+    <block wx:if="{{isFilterClick}}">
+        <scroll-view scrollY class="border-box pb75" style="height: 100%">
+            <view class="bg-white gray pad-h-10 pt10 pb5">
+                <view class="pb10">快递公司</view>
+                <view class="flex-box">
+                    <button catchtap="handleExpressFilter" class="filter-time-btn" hoverClass="none"> 全部 <view class="iconfont icon-mark selected-icon" hidden="{{filterExpressCodes.length!==0}}"></view>
+                    </button>
+                    <button catchtap="handleExpressFilter" class="filter-time-btn" data-code="{{item.expressCode}}" hoverClass="none" wx:for="{{linkedExpressList}}" wx:key="index"> {{item.expCompanyName}} <view class="iconfont icon-mark selected-icon" hidden="{{wxs.myIndexOf(filterExpressCodes,item.expressCode)<0}}"></view>
+                    </button>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="submit-box flex-box pos-abs pad-h-15">
+            <button catchtap="handleReset" class="fx1 line-btn mr20">重置</button>
+            <button catchtap="handleMakeSure" class="fx1 submit-btn ">确定</button>
+        </view>
+    </block>
+</Popup>
+<wxs module="wxs" src="../../wxs/indexOf.wxs" />
+<wxs module="wxsDate" src="../../wxs/timestampToDateString.wxs" />

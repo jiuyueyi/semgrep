@@ -1,0 +1,66 @@
+page {
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.header {
+    color: #666;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.header,.table {
+    background-color: #fff;
+}
+
+.table {
+    border-left: 1px solid #eeecec;
+    border-top: 1px solid #eeecec;
+    margin-top: 15px;
+}
+
+.table-header {
+    border-bottom: 1px solid #eeecec;
+    padding: 10px 0;
+}
+
+.table-header-cell {
+    border-right: 1px solid #eeecec;
+    color: #666;
+    text-align: center;
+}
+
+.filter-time-btn {
+    border-radius: 2px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    height: 35px!important;
+    line-height: 35px!important;
+    margin: 5px 2%!important;
+    min-height: 35px!important;
+    overflow: hidden;
+    padding: 0!important;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 46%!important;
+}
+
+.selected-icon {
+    bottom: -9px;
+    color: #f83c29!important;
+    font-size: 18px;
+    position: absolute;
+    right: 0;
+}
+
+.date-box {
+    color: #999;
+    padding: 5px 20px;
+}
+
+picker {
+    background-color: #eee;
+    padding: 5px 15px;
+}

@@ -1,0 +1,25 @@
+var timestampToDateString = (function(timestamp, type) {
+    var date = getDate(parseInt(timestamp));
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    switch (type) {
+        case 'day':
+            date = [year, month, day].map(formatNumber).join('-');
+            break;
+        case 'time':
+            date = [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+            break;
+    };
+    return (date)
+});
+var formatNumber = (function(n) {
+    var s = n.toString();
+    return (s[(1)] ? s : '0' + s)
+});
+module.exports = ({
+    timestampToDateString: timestampToDateString,
+});

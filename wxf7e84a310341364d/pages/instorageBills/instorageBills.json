@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "入库代扣记录",
+    "usingComponents": {
+        "Popup": "../../components/popup/popup",
+        "FloatDot": "../../components/floatDot/floatDot",
+        "Search": "../../components/search/search"
+    }
+}

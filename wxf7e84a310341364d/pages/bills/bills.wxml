@@ -1,0 +1,68 @@
+<block wx:if="{{billList.length>0}}">
+    <view catchtap="goDetails" class="flex-box bill-item" data-item="{{item}}" wx:for="{{billList}}" wx:key="index">
+        <view class="fx1">
+            <view class="font15">{{item.billType===1?'入库代扣':''}}</view>
+            <view class="mt5" wx:if="{{item.serviceSiteName}}">{{item.serviceSiteName}}</view>
+            <view class="mt5">{{item.billDate}}</view>
+        </view>
+        <view class="tar">
+            <text class="primary font16 bold">{{item.billAmount}}</text>
+            <view class="mt5"> x{{item.billCount}} 票 </view>
+            <view class="{{item.billStatus?'primary':'text-placeholder'}} mt5">
+                <span wx:if="{{item.billStatus!==1}}">{{m1.orderStatusMap(item.billStatus)}}</span>
+                <span wx:if="{{item.billStatus===1}}">{{item.billMessage}}</span>
+            </view>
+        </view>
+    </view>
+</block>
+<view class="tac pt10" wx:else>暂无记录.</view>
+<FloatDot catchclick="handleFilterShow">
+    <view class="iconfont icon-filter font18"></view>
+</FloatDot>
+<Popup catchtrigger="handleFilterClose" extraStyle="width: 80%; padding-bottom: 0" placement="right" visible="{{isFilterClick}}">
+    <block wx:if="{{isFilterClick}}">
+        <scroll-view scrollY class="border-box pb75" style="height: 100%">
+            <view class="bg-white gray pad-h-10 pt10 pb5">
+                <view class="pb10">时间筛选</view>
+                <button catchtap="handleTimeFilter" class="filter-time-btn" data-date-type="{{item.dateType}}" hoverClass="none" wx:for="{{DATE_BTNS}}" wx:key="index"> {{item.name}} <view class="iconfont icon-mark selected-icon" hidden="{{filterDateType!==item.dateType}}"></view>
+                </button>
+            </view>
+            <block wx:if="{{filterDateType==='custom'}}">
+                <view class="flex-box date-box">
+                    <view class="fx1">开始日期</view>
+                    <picker bindchange="handleDateChange" data-type="filterBeginDate" end="{{today}}" mode="date" value="{{filterBeginDate}}">
+                        <view>{{filterBeginDate}}</view>
+                    </picker>
+                </view>
+                <view class="flex-box date-box">
+                    <view class="fx1">结束日期</view>
+                    <picker bindchange="handleDateChange" data-type="filterEndDate" end="{{today}}" mode="date" value="{{filterEndDate}}">
+                        <view>{{filterEndDate}}</view>
+                    </picker>
+                </view>
+            </block>
+            <view class="bg-white gray pad-h-10 pt10 pb5" hidden="{{filterTradeType===4}}">
+                <view class="pb10">服务点名称</view>
+                <view class="flex-box">
+                    <button catchtap="handleServiceSiteFilter" class="filter-time-btn" hoverClass="none"> 全部 <view class="iconfont icon-mark selected-icon" hidden="{{filterServiceSiteCodes.length!==0}}"></view>
+                    </button>
+                    <button catchtap="handleServiceSiteFilter" class="filter-time-btn" data-code="{{item.serviceSiteCode}}" hoverClass="none" wx:for="{{serviceSites}}" wx:key="index"> {{item.serviceSiteName}} <view class="iconfont icon-mark selected-icon" hidden="{{wxs.myIndexOf(filterServiceSiteCodes,item.serviceSiteCode)<0}}"></view>
+                    </button>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="submit-box flex-box pos-abs pad-h-15">
+            <button catchtap="handleReset" class="fx1 line-btn mr20">重置</button>
+            <button catchtap="handleMakeSure" class="fx1 submit-btn ">确定</button>
+        </view>
+    </block>
+</Popup>
+<wxs module="wxs" src="../../wxs/indexOf.wxs" />
+<wxs module="wxsDate" src="../../wxs/timestampToDateString.wxs" />
+<wxs module="m1">
+var orderStatusMap = (function(code) {
+    var orderMap = ['待支付', '已支付', '已完成'];
+    return (orderMap[((nt_0 = (code - 1), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))])
+});
+module.exports.orderStatusMap = orderStatusMap;
+</wxs>

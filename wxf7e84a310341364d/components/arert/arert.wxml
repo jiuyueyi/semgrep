@@ -1,0 +1,6 @@
+<view catchtouchmove="_handleTouchMove" class="popup popup-{{placement}} {{visible?'popup-show':''}}">
+    <view animation="{{animationMask}}" class="mask" style="{{maskStyles}}"></view>
+    <view class="popup-container" style="{{extraStyle}}">
+        <slot></slot>
+    </view>
+</view>

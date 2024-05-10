@@ -1,0 +1,10 @@
+<view class="border-box" style="width: 250px; {{extraStyle}}">
+    <view class="tac font18 bold gray-title pb15 {{extraClass}}" wx:if="{{title}}">{{title}}</view>
+    <slot></slot>
+    <view class="flex-box btn-box mt20">
+        <button bindtap="_handleLeftClick" class="fx1 modal-btn btn-cancel" data-type="{{leftType}}" hidden="{{!leftText}}">{{leftText}}</button>
+        <button bindgetuserinfo="_handleGetUserInfoClick" class="fx1 modal-btn btn-sure" openType="getUserInfo" wx:if="{{isGetUserInfoBtn}}">{{rightText}}</button>
+        <button bindgetphonenumber="_handleGetPhoneNumberClick" class="fx1 modal-btn btn-sure" openType="getPhoneNumber" wx:elif="{{isGetUserPhoneBtn}}">{{rightText}}</button>
+        <button bindtap="_handleRightClick" class="fx1 modal-btn btn-sure" data-type="{{rightType}}" wx:else>{{rightText}}</button>
+    </view>
+</view>

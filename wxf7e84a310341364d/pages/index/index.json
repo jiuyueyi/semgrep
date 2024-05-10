@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "钱包数据",
+    "usingComponents": {
+        "Alert": "../../components/arert/arert"
+    }
+}

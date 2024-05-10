@@ -1,0 +1,7 @@
+<view class="tac">
+    <image class="img-box" src="../../images/wallet.png"></image>
+    <view class="font16 title bold">邻里快递员申请微信授权登录</view>
+    <view class="font13 text-title mt15">邻里快递员申请微信授权登录</view>
+    <button bindgetphonenumber="getPhoneNumber" class="line-btn login-btn" openType="getPhoneNumber">登 录</button>
+    <view catchtap="handleLoginToast" class="login-msg">登录说明</view>
+</view>

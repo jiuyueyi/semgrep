@@ -1,0 +1,6 @@
+<view class="search-container" style="position: {{position}}; top: {{top}}">
+    <view class="search-input-box">
+        <input bindconfirm="_handleSearch" bindinput="_handleInputChange" class="fx5" confirmType="search" data-type="search" placeholder="{{placeholder}}" placeholderClass="text-placeholder font12" value="{{inputVal}}"></input>
+        <view catchtap="_handleSearch" class="iconfont icon-search tac font20 bold pad-h-10" style="color: #B0B5B3"></view>
+    </view>
+</view>

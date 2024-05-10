@@ -1,0 +1,17 @@
+.search-container {
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #333;
+    height: 60px;
+    left: 0;
+    padding: 12.5px 15px;
+    right: 0;
+    z-index: 1;
+}
+
+.search-input-box {
+    border: 1px solid #eeecec;
+    border-radius: 2px;
+    display: flex;
+    padding: 5px 0 5px 10px;
+}

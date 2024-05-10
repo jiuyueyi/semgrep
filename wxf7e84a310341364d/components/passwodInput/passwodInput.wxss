@@ -1,0 +1,38 @@
+.input-frame {
+    position: relative;
+}
+
+.input-frame,.input-frame .input-item {
+    display: flex;
+    justify-content: center;
+}
+
+.input-frame .input-item {
+    align-items: center;
+    border: 1px solid #ccc;
+    height: 50px;
+    width: 50px;
+}
+
+.input-frame_input {
+    bottom: 0;
+    height: 100%;
+    left: 5000px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.input-frame .input-item:not(:nth-last-child(1)) {
+    border-right-color: transparent;
+}
+
+.input-frame.divider .input-item {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    height: 40px;
+    margin: 0 7px;
+    width: 40px;
+}

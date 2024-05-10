@@ -1,0 +1,38 @@
+<view class="tac mb15">
+    <text class="font16 bold primary">{{details.totalAmount}}</text>元 <view class="{{details.tradeStatus?'primary':'text-placeholder'}} mt10"> 交易{{details.tradeStatus?'成功':'失败'}} </view>
+</view>
+<view class="pad-h-15">
+    <view class="flex-box pad-v-10 border-bottom-gray-1">
+        <view>交易类型</view>
+        <view class="fx1 tar">{{details.tradeType===3?'入库代扣':'充值'}}</view>
+    </view>
+    <view class="flex-box pad-v-10 border-bottom-gray-1">
+        <view>订单号</view>
+        <view class="fx1 tar">{{details.orderNumber}}</view>
+    </view>
+    <view class="flex-box pad-v-10 border-bottom-gray-1" wx:if="{{details.tradingNumber}}">
+        <view>交易流水号</view>
+        <view class="fx1 tar">{{details.tradingNumber}}</view>
+    </view>
+    <view class="flex-box pad-v-10 border-bottom-gray-1">
+        <view>交易时间</view>
+        <view class="fx1 tar">{{wxsDate.timestampToDateString(details.payTime,'time')}}</view>
+    </view>
+    <view class="flex-box pad-v-10 border-bottom-gray-1" wx:if="{{details.serviceSiteName}}">
+        <view>代收服务点</view>
+        <view class="fx1 tar">{{details.serviceSiteName}}</view>
+    </view>
+    <view class="flex-box pad-v-10 border-bottom-gray-1" wx:if="{{details.serviceSiteCode}}">
+        <view>服务点编号</view>
+        <view class="fx1 tar">{{details.serviceSiteCode}}</view>
+    </view>
+    <view class="flex-box pad-v-10 border-bottom-gray-1" wx:if="{{details.billCode}}">
+        <view>代收单号</view>
+        <view class="fx1 tar">{{details.billCode}}</view>
+    </view>
+    <view class="flex-box pad-v-10 border-bottom-gray-1" wx:if="{{details.expressName}}">
+        <view>快递公司</view>
+        <view class="fx1 tar">{{details.expressName}}</view>
+    </view>
+</view>
+<wxs module="wxsDate" src="../../wxs/timestampToDateString.wxs" />

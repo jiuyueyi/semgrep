@@ -1,0 +1,11 @@
+var myFindIndex = (function(arr, attrName, attrValue) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[((nt_0 = (i), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))][((nt_0 = (attrName), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))] === attrValue) {
+            return (i)
+        }
+    };
+    return (-1)
+});
+module.exports = ({
+    myFindIndex: myFindIndex,
+});

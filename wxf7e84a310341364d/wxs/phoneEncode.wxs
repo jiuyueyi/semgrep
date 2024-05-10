@@ -1,0 +1,7 @@
+var handlePhoneCode = (function(tel) {
+    var reg = getRegExp('^(\x5cd{3})\x5cd{4}(\x5cd{4})$', 'g');
+    return (tel.replace(reg, "$1****$2"))
+});
+module.exports = ({
+    handlePhoneCode: handlePhoneCode,
+});

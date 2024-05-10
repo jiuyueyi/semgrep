@@ -1,0 +1,87 @@
+.popup {
+    visibility: hidden;
+}
+
+.popup-show {
+    visibility: visible;
+}
+
+.popup-container {
+    background: #fff;
+    box-sizing: border-box;
+    left: 50%;
+    min-width: 260px;
+    opacity: 0;
+    overflow-y: scroll;
+    padding: 25px;
+    position: fixed;
+    top: 45%;
+    transform: translate(-50%,-50%);
+    transform-origin: center;
+    transition: all .5s ease;
+    z-index: 1002;
+}
+
+.popup-show .popup-container {
+    opacity: 1;
+}
+
+.popup-left .popup-container {
+    bottom: 0;
+    left: 0;
+    right: auto;
+    top: 0;
+    transform: translate(-100%,0);
+}
+
+.popup-show.popup-left .popup-container {
+    transform: translate(0,0);
+}
+
+.popup-right .popup-container {
+    bottom: 0;
+    left: auto;
+    min-width: 220px;
+    right: 0;
+    top: 0;
+    transform: translate(100%,0);
+}
+
+.popup-show.popup-right .popup-container {
+    transform: translate(0,0);
+}
+
+.popup-bottom .popup-container {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    transform: translate(0,100%);
+}
+
+.popup-show.popup-bottom .popup-container {
+    transform: translate(0,0);
+}
+
+.popup-top .popup-container {
+    bottom: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    transform: translate(0,-100%);
+}
+
+.popup-show.popup-top .popup-container {
+    transform: translate(0,0);
+}
+
+.mask {
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    opacity: .5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+}

@@ -1,0 +1,34 @@
+<view class="cooper-item-box">
+    <view catchtap="_goDetails" class="flex-box pad-h-15 pad-v-10 border-bottom-gray-1">
+        <view class="fx1 bold">{{serviceSiteData.serviceSiteName}}</view>
+        <view class="iconfont icon-arrow-right text-placeholder"></view>
+    </view>
+    <view class="flex-box express-box" wx:if="{{index<2}}" wx:for="{{serviceSiteData.expressFeeDtos}}" wx:key="index">
+        <view>{{item.expCompanyName}}</view>
+        <view class="fx1 tar">代扣费用: <text class="primary">{{wxs.handleToFixed(item.fee,2)}}</text> 元/件</view>
+    </view>
+    <view catchtap="_goDetails" class="tac text-placeholder pad-v-5" style="background-color: #FBFBFB" wx:if="{{serviceSiteData.expressFeeDtos.length>2}}">查看更多</view>
+    <navigator class="flex-box withhold-box" hoverClass="none" url="/pages/cooperServiceSiteDatas/cooperServiceSiteDatas?serviceSiteCode={{serviceSiteData.serviceSiteCode}}">
+        <view class="fx1 border-right-gray-1">
+            <view class="border-bottom-gray-1 pad-v-10">
+                <view class="text-placeholder font12">近31天代收数</view>
+                <view class="pt5">{{serviceSiteData.monthWithholdCount}}</view>
+            </view>
+            <view class="pad-v-10">
+                <view class="text-placeholder font12">近31天代扣额</view>
+                <view class="pt5">{{wxs.handleToFixed(serviceSiteData.monthWithholdFee||0,2)}}</view>
+            </view>
+        </view>
+        <view class="fx1">
+            <view class="border-bottom-gray-1 pad-v-10">
+                <view class="text-placeholder font12">今日代收数</view>
+                <view class="pt5">{{serviceSiteData.todayWithholdCount}}</view>
+            </view>
+            <view class="pad-v-10">
+                <view class="text-placeholder font12">今日代扣额</view>
+                <view class="pt5">{{wxs.handleToFixed(serviceSiteData.todayWithholdFee||0,2)}}</view>
+            </view>
+        </view>
+    </navigator>
+</view>
+<wxs module="wxs" src="../../wxs/toFixed.wxs" />

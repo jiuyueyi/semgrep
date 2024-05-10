@@ -1,0 +1,29 @@
+<view class="flex-box pad-h-15 pad-v-10">
+    <view>{{serviceSiteData.serviceSiteName}}</view>
+    <view catchtap="handleCancel" class="fx1 tar primary">取消合作</view>
+</view>
+<view class="bg-white pad-h-15">
+    <view class="flex-box pad-v-15">
+        <view>服务点编号</view>
+        <view class="fx1 tar">{{serviceSiteData.serviceSiteCode}}</view>
+    </view>
+    <view class="flex-box pad-v-15 border-top-gray-1">
+        <view>注册电话</view>
+        <view class="fx1 tar">{{serviceSiteData.ssRegisterPhone}}</view>
+    </view>
+    <view class="flex-box pad-v-15 border-top-gray-1">
+        <view>合作开始时间</view>
+        <view class="fx1 tar">{{serviceSiteData.bindTime}}</view>
+    </view>
+</view>
+<view class="flex-box pad-h-15 pad-v-10">
+    <view>快递公司代扣费用</view>
+    <view catchtap="goEditPage" class="fx1 tar primary">编辑</view>
+</view>
+<view class="bg-white pad-h-15">
+    <view class="flex-box pad-v-15 {{index!==0?'border-top-gray-1':''}}" wx:for="{{serviceSiteData.expressFeeDtos}}" wx:key="index">
+        <view>{{item.expCompanyName}}</view>
+        <view class="fx1 tar">代扣费用 <text class="primary font16">{{wxs.handleToFixed(item.fee,2)}}</text> 元/件</view>
+    </view>
+</view>
+<wxs module="wxs" src="../../wxs/toFixed.wxs" />

@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "个人中心",
+    "usingComponents": {
+        "t-captcha": "plugin://wxb302e0fc8ab232b4/t-captcha"
+    }
+}

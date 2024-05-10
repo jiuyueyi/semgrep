@@ -1,0 +1,17 @@
+<view class="bill-detail">
+    <view class="bill-detail-main">
+        <view class="site-name">{{billDetail.serviceSiteName}}</view>
+        <view class="site-code">{{billDetail.serviceSiteCode}}</view>
+        <view class="money">-{{billDetail.billAmount}}</view>
+        <view class="status">{{billDetail.billMessage||''}}</view>
+    </view>
+    <view class="bill-detail-list">
+        <view class="list" wx:for="{{lists}}" wx:key="index">
+            <view class="label">{{item.label}}</view>
+            <view bindtap="goDetail" class="val" data-item="{{item}}" wx:if="{{item.status&&billDetail[item.field]}}">{{billDetail[item.field]===1?'入库代扣':''}} </view>
+            <view bindtap="goDetail" class="val" data-item="{{item}}" wx:if="{{!item.link&&!item.status&&billDetail[item.field]}}">{{billDetail[item.field]}} </view>
+            <view bindtap="goDetail" class="val" data-item="{{item}}" wx:if="{{item.link&&!item.status&&billDetail[item.field]}}">{{billDetail[item.field].length}} <span class="iconfont icon-arrow-right text-placeholder" wx:if="{{item.link}}"></span>
+            </view>
+        </view>
+    </view>
+</view>

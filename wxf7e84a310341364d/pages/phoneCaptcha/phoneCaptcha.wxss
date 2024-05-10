@@ -1,0 +1,8 @@
+page {
+    background-color: #fff;
+}
+
+.change-btn {
+    margin-top: 120rpx;
+    width: 75%!important;
+}

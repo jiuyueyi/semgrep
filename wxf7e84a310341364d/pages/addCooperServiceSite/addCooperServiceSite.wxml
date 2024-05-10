@@ -1,0 +1,33 @@
+<view class="pad-h-15 pad-v-10" wx:if="{{!isEdit}}">服务点信息</view>
+<view class="pad-h-15 bg-white text-title" wx:if="{{!isEdit}}">
+    <view class="flex-box border-bottom-gray-1 pad-v-10">
+        <view>服务点编号</view>
+        <input bindinput="handleInputChange" class="fx1 tar" data-type="serviceSiteCode" maxlength="30" placeholder="请输入服务点编号" placeholderClass="text-placeholder" value="{{serviceSiteCode}}"></input>
+    </view>
+    <view class="flex-box pad-v-10">
+        <view>注册电话</view>
+        <input bindinput="handleInputChange" class="fx1 tar" data-type="ssRegisterPhone" maxlength="11" placeholder="请输入注册电话" placeholderClass="text-placeholder" type="number" value="{{ssRegisterPhone}}"></input>
+    </view>
+</view>
+<AddExp catchlinechange="handleLineDataChange" id="addExp" lineDatas="{{expressFees}}"></AddExp>
+<view class="pad15 text-title" wx:if="{{isEdit}}"> 说明: <view>1、价格区间只能设置在0.1-10元（含）之间。</view>
+    <view>2、每周最多修改1次，请谨慎操作。</view>
+</view>
+<view class="submit-box flex-box">
+    <button catchtap="handleSubmitClick" class="submit-btn disable-btn" disabled="{{!serviceSiteCode||!ssRegisterPhone||expressFees.length===0}}" style="width: 85%"> {{isEdit?'保存设置':'确认合作'}} </button>
+</view>
+<Popup placement="center" visible="{{tradePswInputPop}}">
+    <view class="tac mb10">请输入交易密码</view>
+    <PasswodInput bindfinished="handleInputFinshed" id="inputFrame"></PasswodInput>
+    <view catchtap="handleForgetPsw" class="tar primary mt10">忘记密码</view>
+</Popup>
+<Popup visible="{{isWalletPayPop}}">
+    <CustomModal catchleftclick="handleWalletPayPopClose" catchrightclick="getAuthPayId" rightText="确认开通" title="开通钱包代扣服务">
+        <view class="text-title pad-v-5">
+            <text class="text-placeholder">开通钱包: </text>钱包账号 </view>
+        <view class="text-title pad-v-5">
+            <text class="text-placeholder">开通内容: </text>钱包代收代扣服务，服务点用户入库快递后，根据代收金额实时扣费，轻松结算。开通后，可随时与服务点取消合作 </view>
+        <view class="text-title pad-v-5">
+            <text class="text-placeholder">扣费方式: </text>钱包余额 </view>
+    </CustomModal>
+</Popup>

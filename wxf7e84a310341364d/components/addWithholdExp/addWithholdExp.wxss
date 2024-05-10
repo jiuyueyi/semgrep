@@ -1,0 +1,28 @@
+.fee-box {
+    border-bottom: 1px solid #eeecec;
+    height: 35px;
+    line-height: 35px;
+    padding: 10px 0;
+}
+
+.fee-input {
+    border-bottom: 1px solid #f83c29;
+    display: inline-block;
+    padding: 0 10px;
+    vertical-align: middle;
+    width: 50px;
+}
+
+.add-btn {
+    background-color: transparent;
+    border: 1px solid #cecece;
+    border-radius: 25px;
+    color: #666;
+    font-size: 13px;
+    font-weight: 400;
+    height: 32px!important;
+    line-height: 32px!important;
+    min-height: 32px!important;
+    padding: 0;
+    width: 120px!important;
+}

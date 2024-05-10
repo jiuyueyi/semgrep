@@ -1,0 +1,54 @@
+{
+    "pages": [
+        "pages/login/login",
+        "pages/index/index",
+        "pages/register/register",
+        "pages/webview/webview",
+        "pages/personal/personal",
+        "pages/phoneCaptcha/phoneCaptcha",
+        "pages/setTradePassword/setTradePassword",
+        "pages/invest/invest",
+        "pages/bills/bills",
+        "pages/addCooperServiceSite/addCooperServiceSite",
+        "pages/cooperServiceSiteDatas/cooperServiceSiteDatas",
+        "pages/cooperServiceSiteList/cooperServiceSiteList",
+        "pages/cooperServiceSiteDetails/cooperServiceSiteDetails",
+        "pages/billDetails/billDetails",
+        "pages/instorageBills/instorageBills",
+        "pages/alipaySign/index",
+        "pages/billDetailNew/index",
+        "pages/pkgDetail/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "邻里钱包",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#333",
+        "selectedColor": "#F83C29",
+        "backgroundColor": "#FFFFFF",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "钱包数据",
+                "iconPath": "images/tabIcon/index@gray.png",
+                "selectedIconPath": "images/tabIcon/index@red.png"
+            },
+            {
+                "pagePath": "pages/cooperServiceSiteList/cooperServiceSiteList",
+                "text": "合作服务点",
+                "iconPath": "images/tabIcon/serviceSite@gray.png",
+                "selectedIconPath": "images/tabIcon/serviceSite@red.png"
+            },
+            {
+                "pagePath": "pages/personal/personal",
+                "text": "个人中心",
+                "iconPath": "images/tabIcon/personal@gray.png",
+                "selectedIconPath": "images/tabIcon/personal@red.png"
+            }
+        ]
+    }
+}

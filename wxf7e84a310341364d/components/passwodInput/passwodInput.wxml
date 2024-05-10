@@ -1,0 +1,4 @@
+<view class="input-frame custom-class {{frameStyle}}">
+    <input bind:focus="onInputFocus" bind:input="onInputChange" class="input-frame_input" cursor="{{cursor}}" focus="{{isFocus}}" maxlength="{{space}}" type="number" value="{{_value}}"></input>
+    <view bind:tap="onClick" class="input-item" wx:for="{{space}}" wx:key="index"> {{valueList[index]}} </view>
+</view>

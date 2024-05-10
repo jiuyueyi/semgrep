@@ -1,0 +1,17 @@
+.register-btn {
+    margin-top: 120rpx;
+    width: 75%!important;
+}
+
+.get-user-phone-btn {
+    background: transparent;
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
+    height: 22px!important;
+    line-height: 22px!important;
+    margin: 0;
+    min-height: 22px!important;
+    padding: 0!important;
+    text-align: right;
+}

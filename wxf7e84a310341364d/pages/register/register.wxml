@@ -1,0 +1,60 @@
+<view class="text-placeholder pad10">基本信息</view>
+<view class="pad-h-20 text-title bg-white">
+    <view class="flex-box border-bottom-gray-1 pad-v-15">
+        <view>快递员姓名<text class="primary">*</text>
+        </view>
+        <input bindinput="handleInputChange" class="fx1 tar" data-type="userName" maxlength="30" placeholder="请输入快递员姓名" placeholderClass="text-placeholder" value="{{userName}}"></input>
+    </view>
+    <view class="flex-box border-bottom-gray-1 pad-v-15">
+        <view>快递公司<text class="primary">*</text>
+        </view>
+        <view catchtap="handleExpressPop" class="fx1 tar pos-rel" style="height: 22px" wx:if="{{sureSelectedExps.length>0}}">
+            <image class="w-20 h-20 pos-abs" src="https://ocms.jtexpress.com.cn/ztapp/menuIcons/tmp/express-icon/icon_{{item.expressCode}}.png" style="right: {{sureSelectedExps.length<=10?(sureSelectedExps.length-1-index)*20:sureSelectedExps.length<=20?(sureSelectedExps.length-1-index)*10:(sureSelectedExps.length-1-index)*5}}px" wx:for="{{sureSelectedExps}}" wx:key="index"></image>
+        </view>
+        <view catchtap="handleExpressPop" class="fx1 tar text-placeholder" wx:else>请选择快递公司</view>
+        <view class="iconfont icon-arrow-right text-placeholder"></view>
+    </view>
+    <block wx:if="{{isRejectWXPhone}}">
+        <view class="flex-box border-bottom-gray-1 pad-v-15">
+            <view>手机号<text class="primary">*</text>
+            </view>
+            <input bindinput="handleInputChange" class="fx1 tar" data-type="mobile" maxlength="11" placeholder="请输入手机号" placeholderClass="text-placeholder" type="number" value="{{mobile}}"></input>
+            <view catchtap="getCaptchaNum" class="primary font13 ml10">{{captchaTimer}}</view>
+        </view>
+        <view class="flex-box pad-v-15">
+            <view>验证码<text class="primary">*</text>
+            </view>
+            <input bindinput="handleInputChange" class="fx1 tar" data-type="smsCode" maxlength="6" placeholder="请输入验证码" placeholderClass="text-placeholder" type="number" value="{{smsCode}}"></input>
+        </view>
+    </block>
+    <view class="flex-box pad-v-15" wx:else>
+        <view>微信手机号<text class="primary">*</text>
+        </view>
+        <button bindgetphonenumber="handleGetWXPhones" class="fx1 get-user-phone-btn" openType="getPhoneNumber">{{isGetWXPhone?'已获取':'请输入手机号'}}</button>
+    </view>
+</view>
+<button catchtap="handleRegister" class="submit-btn register-btn disable-btn" disabled="{{!isGetWXPhone&&(!smsCode||!mobile)||sureSelectedExps.length===0||!userName}}">注 册</button>
+<t-captcha appId="2072284734" bindclose="handlerClose" binderror="handlerError" bindready="handlerReady" bindverify="handlerVerify" id="captcha"></t-captcha>
+<Popup catchtrigger="handlePopClose" extraStyle="padding: 15px!important" placement="bottom" visible="{{selectExpPop}}">
+    <view class="pos-rel" wx:if="{{selectExpPop}}">
+        <view class="tac primary pb10 font16">请选择快递公司</view>
+        <block wx:if="{{expressCompanyList.length>0}}">
+            <scroll-view scrollY style="height: 200px">
+                <checkbox-group bindchange="handleCheckChange">
+                    <label wx:for="{{expressCompanyList}}" wx:key="index">
+                        <view class="flex-box border-bottom-gray-1 pad10">
+                            <image class="w-20 h-20 mr15" src="https://ocms.jtexpress.com.cn/ztapp/menuIcons/tmp/express-icon/icon_{{item.expressCode}}.png"></image>
+                            <view class="fx1">{{item.expCompanyName}}</view>
+                            <checkbox checked="{{wxs.myFindIndex(selectedExps,'expressCode',item.expressCode)>=0}}" class="pos-rel visibility-hide" value="{{item.expressCode}}">
+                                <view class="iconfont icon-select primary select-btn" hidden="{{wxs.myFindIndex(selectedExps,'expressCode',item.expressCode)<0}}"></view>
+                                <view class="iconfont icon-unselect text-title select-btn" hidden="{{wxs.myFindIndex(selectedExps,'expressCode',item.expressCode)>=0}}"></view>
+                            </checkbox>
+                        </view>
+                    </label>
+                </checkbox-group>
+            </scroll-view>
+            <button catchtap="handleChangeExps" class="submit-btn mt15 disable-btn" disabled="{{selectedExps.length===0}}">确 定({{selectedExps.length}})</button>
+        </block>
+    </view>
+</Popup>
+<wxs module="wxs" src="../../wxs/findIndex.wxs" />

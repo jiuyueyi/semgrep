@@ -1,0 +1,35 @@
+<view class="alipay-sign">
+    <view class="brand">
+        <image mode="aspectFill" src="../../images/alipay.jpeg"></image>
+        <view class="brand-name">支付宝代扣</view>
+    </view>
+    <view class="tip-text">
+        <text>每天的代收费用将会在次日的上午9点由支付宝发起代扣，支持支付宝余额、花呗、信用卡、银行卡等方式。</text>
+    </view>
+    <view class="sign-detail" wx:if="{{signObj.code&&signObj.code==='10000'}}">
+        <view>开通时间：{{signObj.validTime}}</view>
+        <view> 开通协议号： <text userSelect="true">{{signObj.agreementNo}}</text>
+        </view>
+    </view>
+    <view class="btn">
+        <button bindtap="openModal" hoverClass="none" plain="true" wx:if="{{signObj.code&&signObj.code==='40004'}}">开通支付宝代扣</button>
+        <button bindtap="unsignBtn" hoverClass="none" plain="true" wx:elif="{{signObj.code}}">关闭支付宝代扣</button>
+    </view>
+</view>
+<Popup catchtrigger="handlePopClose" extraStyle="background:transparent" placement="center" visible="{{linkModal}}">
+    <view class="modal-content">
+        <view class="modal-title">吱口令</view>
+        <view class="zhi-text">{{shareToken}}</view>
+        <view class="btn-copy">
+            <button bindtap="copyText" data-zhitext="{{shareToken}}" hoverClass="none" plain="true" size="mini">复制</button>
+        </view>
+        <view class="img-wrap">
+            <image mode="aspectFill" src="{{Qrcode}}"></image>
+        </view>
+        <view class="modal-tip">
+            <view>截屏保存二维码</view>
+            <view>打开支付宝扫一扫开通代付</view>
+        </view>
+    </view>
+    <image bindtap="handlePopClose" class="close-img" src="../../images/close.png"></image>
+</Popup>

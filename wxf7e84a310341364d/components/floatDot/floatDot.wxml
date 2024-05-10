@@ -1,0 +1,5 @@
+<movable-area class="move-area-box {{extraClass}}" style="width: {{windowWidth}}px; height: {{windowHeight}}px">
+    <movable-view animation="{{false}}" bindtap="_handleClickDot" class="move-view-box" direction="all" style="pointer-events: auto; {{extraStyle}}" x="{{windowWidth-xMinsValue}}" y="{{windowHeight-yMinsValue}}">
+        <slot></slot>
+    </movable-view>
+</movable-area>

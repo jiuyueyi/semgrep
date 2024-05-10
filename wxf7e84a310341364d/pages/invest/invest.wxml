@@ -1,0 +1,14 @@
+<form bindsubmit="handleSubmitInvest">
+    <view class="pad-h-15 text-title bg-white">
+        <view class="flex-box pad-v-15 border-bottom-gray-1">
+            <view>充值账号</view>
+            <view class="fx1 tar">{{wxs.handlePhoneCode(phone)}}</view>
+        </view>
+        <view class="flex-box pad-v-15">
+            <view>充值金额</view>
+            <input class="fx1 tar mr10" maxlength="5" name="totalFee" placeholder="请输入充值金额（单次最高99999）" placeholderClass="text-placeholder" type="number"></input>元 </view>
+    </view>
+    <view class="pad15 primary">说明：充值金额只能用于代扣费用的扣除，不能提现</view>
+    <button class="submit-btn" formType="submit" style="width: 80%; margin-top: 100px">确认充值</button>
+</form>
+<wxs module="wxs" src="../../wxs/phoneEncode.wxs" />
